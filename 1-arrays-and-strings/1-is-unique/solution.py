@@ -14,12 +14,21 @@ Questions:
 
 Algorithm:
 
---Option 1--
 We could create a Set of the characters and check if the length is the same as the string.
 If it is the same, it has all unique characters.
 
 Time Complexity: O(n)
 Space Complexity: O(n)
+
+--Without Data Structures--
+Without using additional data structures, we would need to iterate over each character
+and try to find another it another time in the array.
+
+Time Complexity: O(n^2)
+Space Complexity: O(1)
+
+Another possibility would be to sort the string in O(nlgn) time, if it is not immutable,
+and then check if sequential characters are repeated.
 
 """
 
