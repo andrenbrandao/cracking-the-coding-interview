@@ -26,6 +26,20 @@ Algorithm:
 Time Complexity: O(n²) because we have to shift all characters to the right
 for every new space.
 
+Optimal Algorithm:
+
+             i   j
+"Mr John Smith    "
+- j is the index where we will start storing the characters
+- i is the pointer we will use to read from right to left
+
+- Count the number of spaces and define a new index where we will start moving the characters
+- Go from right to left.
+    - If it is a character, write it to str[index]. Decrement the index.
+    - If it is a space, we have to write to the index in reverse order. Decrement the index by 3.
+
+Time Complexity: O(n)
+
 """
 
 
@@ -53,8 +67,31 @@ def urlify(str1, length):
     return "".join(array_str)
 
 
+def urlify_optimal(str1, length):
+    array_str = list(str1)
+    space_count = 0
+
+    for i in range(length):
+        if array_str[i] == " ":
+            space_count += 1
+
+    index = length + space_count * 2
+    for position in range(length - 1, -1, -1):
+        if array_str[position] == " ":
+            array_str[index - 1] = "0"
+            array_str[index - 2] = "2"
+            array_str[index - 3] = "%"
+            index -= 3
+
+        else:
+            array_str[index - 1] = array_str[position]
+            index -= 1
+
+    return "".join(array_str)
+
+
 def test(str1, length, expected_answer):
-    answer = urlify(str1, length)
+    answer = urlify_optimal(str1, length)
 
     if answer != expected_answer:
         raise Exception(
