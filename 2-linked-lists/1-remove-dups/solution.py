@@ -24,6 +24,13 @@ Algorithm:
 
 To remove the node from the list, we always have to keep a pointer to the last node.
 
+Without a Buffer:
+We would have to try to find any duplicates for each node we iterate over. This would
+take O(n²)
+
+- For each node, use a runner to check every node after it.
+- If we find a duplicate value, point the previous node of the runner to the runner.next.
+
 """
 
 
@@ -74,8 +81,21 @@ def remove_dups(node):
         node = node.next
 
 
+def remove_dups_without_buffer(node):
+    while node:
+        runner = node.next
+        last_node = node
+        while runner:
+            if runner.value == node.value:
+                last_node.next = runner.next
+            else:
+                last_node = runner
+            runner = runner.next
+        node = node.next
+
+
 def test(node, expected_answer):
-    remove_dups(node)
+    remove_dups_without_buffer(node)
 
     answer_as_array = linked_list_to_array(node)
 
