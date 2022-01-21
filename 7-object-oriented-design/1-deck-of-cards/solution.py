@@ -297,11 +297,13 @@ our code more complicated.
 
 Other classes we will need:
 
-BlackJackGame
+BlackjackGame
 - Receives a deck of cards
-- Receives players
-- Deal card to player
+- Receives players/hands
+- Deal card to player/hand
 - Players each have a hand
+- Players bet money and win or lose from the table
+- We can consider that each player is a hand
 
 Hand
 - Add a card
@@ -347,10 +349,79 @@ class Card:
         self.suit = suit
         self.rank = rank
 
+    def value(self):
+        return self.rank.value
+
+
+class DeckFactory:
+    @classmethod
+    def create_standard_deck(cls):
+        ranks = [rank for rank in Rank]
+        suits = [suit for suit in Suit]
+
+        cards = []
+        for rank in ranks:
+            for suit in suits:
+                new_card = Card(suit, rank)
+                cards.append(new_card)
+
+        return cards
+
+
+class Hand:
+    def __init__(self):
+        self.cards = []
+
+    def add_card(self, card: Card):
+        self.cards.append(card)
+
+    def score(self):
+        score = 0
+        for card in self.cards:
+            score += card.value()
+
+        return score
+
+
+class BlackjackCard(Card):
+    def __init__(self, suit: Suit, rank: Rank):
+        super().__init__(suit, rank)
+
+    def value(self):
+        if self.rank == Rank.ACE:
+            return 1
+        elif self.rank.value >= 10:
+            return 10
+
+    def min_value(self):
+        if self.rank == Rank.ACE:
+            return 1
+        else:
+            return self.value()
+
+    def max_value(self):
+        if self.rank == Rank.ACE:
+            return 11
+        else:
+            return self.value()
+
+
+class BlackjackHand(Hand):
+    def __init__(self):
+        super().__init__()
+
+    def score(self):
+        pass
+
+    # We can have more than 1 ace in hand, giving us many possibilities.
+    def possible_scores(self):
+        pass
+
 
 if __name__ == "__main__":
-    king_card = CardKing(Suit.DIAMONDS)
-    print(king_card.get_value())
-    print(king_card.get_suit())
+    cards = DeckFactory.create_standard_deck()
+    hand = Hand()
+    for card in cards[:3]:
+        hand.add_card(card)
 
-    standard_deck = DeckFactory.create_standard_deck()
+    print(hand.score())
