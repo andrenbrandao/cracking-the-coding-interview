@@ -81,8 +81,8 @@ These are my solutions to the [Cracking the Coding Interview](https://www.amazon
 
 ### Chapter 8 - Recursion and Dynamic Programming
 
-- [ ] 8.1
-- [ ] 8.2
+- [x] 8.1
+- [x] 8.2
 - [ ] 8.3
 - [ ] 8.4
 - [ ] 8.5
