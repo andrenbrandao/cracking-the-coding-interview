@@ -13,7 +13,7 @@ Hints: #331, #360, #388
 Questions:
 
 - Is there always a valid solution? That is, the robot can always get to the bottom right?
-Let's assume there is.
+No. Take care of this case.
 
 - Is it safe to assume that it cannot walk through the walls of the grid?
 Yes.
@@ -168,6 +168,22 @@ if __name__ == "__main__":
         ],
         "rrd",
         robot_in_grid_strings,
+    ),
+    test(
+        [
+            ["r", "x", "0"],
+            ["x", "0", "0"],
+        ],
+        "",
+        robot_in_grid_strings,
+    ),
+    test(
+        [
+            ["r", "x", "0"],
+            ["x", "0", "0"],
+        ],
+        [],
+        robot_in_grid_points,
     )
     test(
         [

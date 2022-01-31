@@ -3,7 +3,7 @@ import sys
 n = int(sys.argv[1])
 
 from model import getPath
-from dfs_solution import robot_in_grid_points, robot_in_grid_points
+from dp_solution import robot_in_grid_points
 from gen import gen
 
 for i in range(n):
