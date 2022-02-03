@@ -82,4 +82,5 @@ def test(input_data, expected_answer):
 if __name__ == "__main__":
     test([5, 2, 4, 3, 1], [1, 2, 3, 4, 5])
     test([2, 5, 2, 1, 3, 1, 1], [1, 1, 1, 2, 2, 3, 5])
+    test([99, 55, 35, 60, 10, 25], [10, 25, 35, 55, 60, 99])
     print("All tests passed!")
