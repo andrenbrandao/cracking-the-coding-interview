@@ -83,7 +83,7 @@ These are my solutions to the [Cracking the Coding Interview](https://www.amazon
 
 - [x] 8.1
 - [x] 8.2
-- [ ] 8.3
+- [x] 8.3
 - [ ] 8.4
 - [ ] 8.5
 - [ ] 8.6
@@ -109,7 +109,7 @@ These are my solutions to the [Cracking the Coding Interview](https://www.amazon
 
 ### Chapter 10 - Sorting and Searching
 
-- [ ] 10.1
+- [x] 10.1
 - [ ] 10.2
 - [ ] 10.3
 - [ ] 10.4
