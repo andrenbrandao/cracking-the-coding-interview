@@ -110,7 +110,7 @@ These are my solutions to the [Cracking the Coding Interview](https://www.amazon
 ### Chapter 10 - Sorting and Searching
 
 - [x] 10.1
-- [ ] 10.2
+- [x] 10.2
 - [ ] 10.3
 - [ ] 10.4
 - [ ] 10.5
