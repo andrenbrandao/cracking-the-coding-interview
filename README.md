@@ -24,7 +24,7 @@ These are my solutions to the [Cracking the Coding Interview](https://www.amazon
 ### Chapter 2 - Linked Lists
 
 - [x] 2.1
-- [ ] 2.2
+- [x] 2.2
 - [ ] 2.3
 - [ ] 2.4
 - [ ] 2.5
