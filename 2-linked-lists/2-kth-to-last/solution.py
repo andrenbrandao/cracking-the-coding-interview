@@ -30,8 +30,16 @@ Then, iterate over the list and look for the element at position n-k-1,
 considering the first position at index 0.
 
 Time Complexity: O(n)
+Space Complexity: O(1)
 
-------
+--- Recursive ---
+
+If we know how to find a (k-1)th element, can we find a kth element more easily?
+Can we break it into subproblems?
+
+
+
+--- Optimal ---
 
 Can we do it better by just one go?
 
@@ -46,9 +54,10 @@ Check if current.next is None. If it is, return the node at pointer 'i'.
 
 Start both pointers at the head. Start moving j and when they have a distance
 of k, we can start moving i.
-"""
 
-from os import lstat
+Time Complexity: O(n)
+Space Complexity: O(1)
+"""
 
 
 class Node:
@@ -106,9 +115,29 @@ def kth_to_last(lst, k):
     return current_i
 
 
+def kth_to_last_rec(lst, k):
+    count = -1
+
+    def rec_helper(head, k):
+        nonlocal count
+        if not head:
+            return Node(None)
+
+        node = rec_helper(head.next, k)
+
+        count += 1
+
+        if count == k:
+            return head
+
+        return node
+
+    return rec_helper(lst, k)
+
+
 def test(elements, k, expected_answer):
     linked_list = create_linked_list(elements)
-    answer = kth_to_last(linked_list, k).value
+    answer = kth_to_last_rec(linked_list, k).value
 
     if answer != expected_answer:
         raise Exception(
@@ -122,4 +151,5 @@ if __name__ == "__main__":
     test([5, 2, 3, 4, 0], 4, 5)
     test([5, 2, 3, 4, 0], 0, 0)
     test([5, 2, 1], 3, None)
+    test([], 3, None)
     print("All tests passed!")
