@@ -37,7 +37,22 @@ Space Complexity: O(1)
 If we know how to find a (k-1)th element, can we find a kth element more easily?
 Can we break it into subproblems?
 
+Let's say P(k) is the function that returns the kth to last element.
 
+Base case: {
+    return None if head is None
+}
+
+Assume we know how to handle P(k-1).
+
+P(k) = {
+    count = count of P(k-1) + 1
+    node = P(k-1)
+    return node if count == k
+}
+
+Time Complexity: O(n)
+Space Complexity: O(n)
 
 --- Optimal ---
 
@@ -78,6 +93,7 @@ def create_linked_list(elements):
     return dummy.next
 
 
+# Naive
 def kth_to_last_naive(lst, k):
     n = 0
     current = lst
@@ -97,6 +113,7 @@ def kth_to_last_naive(lst, k):
     return Node(None)
 
 
+# Two pointers
 def kth_to_last(lst, k):
     dummy = Node(None)
     dummy.next = lst
@@ -115,18 +132,15 @@ def kth_to_last(lst, k):
     return current_i
 
 
+# Recursive
 def kth_to_last_rec(lst, k):
-    count = -1
-
     def rec_helper(head, k):
-        nonlocal count
         if not head:
-            return Node(None)
+            return Node(None), -1
 
-        node = rec_helper(head.next, k)
+        node, count = rec_helper(head.next, k)
 
         count += 1
-
         if count == k:
             return head
 
@@ -137,7 +151,7 @@ def kth_to_last_rec(lst, k):
 
 def test(elements, k, expected_answer):
     linked_list = create_linked_list(elements)
-    answer = kth_to_last_rec(linked_list, k).value
+    answer = kth_to_last(linked_list, k).value
 
     if answer != expected_answer:
         raise Exception(
