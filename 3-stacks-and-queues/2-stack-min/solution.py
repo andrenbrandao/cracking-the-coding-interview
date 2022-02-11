@@ -71,7 +71,7 @@ class StackWithMin:
         if self.__stack[-1] == self.__min_stack[-1]:
             self.__min_stack.pop()
 
-        self.__stack.pop()
+        return self.__stack.pop()
 
     def min(self):
         if not self.__stack:
