@@ -35,7 +35,7 @@ These are my solutions to the [Cracking the Coding Interview](https://www.amazon
 ### Chapter 3 - Stacks and Queues
 
 - [x] 3.1
-- [ ] 3.2
+- [x] 3.2
 - [ ] 3.3
 - [ ] 3.4
 - [ ] 3.5
