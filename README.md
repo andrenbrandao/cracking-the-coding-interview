@@ -44,8 +44,8 @@ These are my solutions to the [Cracking the Coding Interview](https://www.amazon
 ### Chapter 4 - Trees and Graphs
 
 - [x] 4.1
-- [ ] 4.2
-- [ ] 4.3
+- [x] 4.2
+- [x] 4.3
 - [ ] 4.4
 - [ ] 4.5
 - [ ] 4.6
