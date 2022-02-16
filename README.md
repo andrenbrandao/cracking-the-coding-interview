@@ -60,7 +60,7 @@ These are my solutions to the [Cracking the Coding Interview](https://www.amazon
 
 - [x] 5.1
 - [x] 5.2
-- [ ] 5.3
+- [x] 5.3
 - [ ] 5.4
 - [ ] 5.5
 - [ ] 5.6
