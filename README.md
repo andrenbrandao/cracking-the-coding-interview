@@ -69,7 +69,7 @@ These are my solutions to the [Cracking the Coding Interview](https://www.amazon
 
 ### Chapter 7 - Object-Oriented Design
 
-- [ ] 7.1
+- [x] 7.1
 - [ ] 7.2
 - [ ] 7.3
 - [ ] 7.4

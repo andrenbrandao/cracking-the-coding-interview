@@ -12,7 +12,7 @@ Questions:
 
 - What cards are in a deck? How many?
 - Should we consider the deck with or without the jokers? How many jokers?
-- What the rules of black jack?
+- What are the rules of black jack?
 - What cards are available in the game?
 
 --
@@ -31,8 +31,6 @@ Design
 - Deck with 52 cards
 - Card is going to have a suit, rank, value
 - Card belongs_to a Deck, Deck has_many Cards
-
-*2nd Problem - Black Jack*
 
 """
 
@@ -365,7 +363,20 @@ class DeckFactory:
                 new_card = Card(suit, rank)
                 cards.append(new_card)
 
-        return cards
+        return Deck(cards)
+
+    @classmethod
+    def create_black_jack_deck(cls):
+        ranks = [rank for rank in Rank]
+        suits = [suit for suit in Suit]
+
+        cards = []
+        for rank in ranks:
+            for suit in suits:
+                new_card = BlackjackCard(suit, rank)
+                cards.append(new_card)
+
+        return Deck(cards)
 
 
 class Hand:
@@ -392,6 +403,8 @@ class BlackjackCard(Card):
             return 1
         elif self.rank.value >= 10:
             return 10
+        else:
+            return self.rank.value
 
     def min_value(self):
         if self.rank == Rank.ACE:
@@ -411,17 +424,68 @@ class BlackjackHand(Hand):
         super().__init__()
 
     def score(self):
-        pass
+        scores = self.possible_scores()
 
-    # We can have more than 1 ace in hand, giving us many possibilities.
+        min_over = float("+inf")
+        max_under = float("-inf")
+        for score in scores:
+            if score > 21 and score < min_over:
+                min_over = score
+            elif score <= 21 and score > max_under:
+                max_under = score
+
+        return max_under if max_under != float("-inf") else min_over
+
+    """
+    We can have more than 1 ace in hand, giving us many possibilities.
+
+    Let's say we receive an Ace:
+    [1, 11] -> we have two possibilities.
+
+    If we receive a 3, we then have to sum 3 to both possibilities:
+    [4, 14]
+
+    Now, if we receive another Ace, we have to split all possible values
+    we already have.
+    [4,    14]
+    / \    / \
+   +1 +11 +1 +11
+
+   So, every time we get a new card, we have to iterate over all the possible
+   scores we have and add this new value. If this new card also has a min_value
+   and a max_value, we have to append this new possibility with every possibility we have.
+    """
+
     def possible_scores(self):
-        pass
+        scores = []
+        for card in self.cards:
+            self.add_card_to_score_list(card, scores)
+
+        return scores
+
+    def add_card_to_score_list(self, card, scores):
+        if len(scores) == 0:
+            scores.append(0)
+
+        for i, score in enumerate(scores[:]):
+            scores[i] = score + card.min_value()
+            if card.min_value() != card.max_value():
+                scores.append(score + card.max_value())
 
 
 if __name__ == "__main__":
-    cards = DeckFactory.create_standard_deck()
+    deck = DeckFactory.create_standard_deck()
     hand = Hand()
-    for card in cards[:3]:
+    for card in deck.cards[:3]:
         hand.add_card(card)
 
     print(hand.score())
+
+    blackjack_deck = DeckFactory.create_black_jack_deck()
+    blackjack_hand = BlackjackHand()
+
+    blackjack_deck.shuffle()
+    for card in blackjack_deck.cards[:3]:
+        blackjack_hand.add_card(card)
+
+    print(blackjack_hand.score())
