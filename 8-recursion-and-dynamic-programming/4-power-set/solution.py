@@ -65,6 +65,21 @@ We are generating 2^n subsets that can be at most of size n.
 Other solutions:
 - https://www.youtube.com/watch?v=REOH22Xwdkk&ab_channel=NeetCode
 - https://leetcode.com/problems/subsets/solution/
+
+
+-- Option 2 --
+
+Build the subsets by adding or not adding the next element.
+
+                   {}
+        /                    \
+       {}                   {1}
+     /    \              /        \
+    {}     {2}         {1}        {1,2}
+   /  \     / \        / \         /  \
+  {}  {3} {2} {2,3}  {1} {1,3}  {1,2} {1,2,3}
+
+
 """
 
 
@@ -83,8 +98,23 @@ def power_set(arr):
     return subsets
 
 
+def power_set2(arr):
+    subsets = []
+
+    def find_subsets(arr, pos, current_subset):
+        subsets.append(current_subset[:])
+
+        for i in range(pos, len(arr)):
+            current_subset.append(arr[i])
+            find_subsets(arr, i + 1, current_subset)
+            current_subset.pop()
+
+    find_subsets(arr, 0, [])
+    return subsets
+
+
 def test(arr, expected_answer):
-    answer = power_set(arr)
+    answer = power_set2(arr)
 
     if answer != expected_answer:
         raise Exception(
