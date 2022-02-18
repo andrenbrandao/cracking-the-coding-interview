@@ -15,7 +15,7 @@ These are my solutions to the [Cracking the Coding Interview](https://www.amazon
 - [x] 1.2
 - [x] 1.3
 - [x] 1.4
-- [ ] 1.5
+- [x] 1.5
 - [ ] 1.6
 - [ ] 1.7
 - [ ] 1.8
