@@ -111,7 +111,7 @@ These are my solutions to the [Cracking the Coding Interview](https://www.amazon
 
 - [x] 10.1
 - [x] 10.2
-- [ ] 10.3
+- [x] 10.3
 - [ ] 10.4
 - [ ] 10.5
 - [ ] 10.6
