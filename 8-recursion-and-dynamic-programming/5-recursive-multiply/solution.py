@@ -57,6 +57,8 @@ rec(3, 5)
 The book presents a different solution with bit shifting and presents
 at the end a Time Complexity of O(logS) being S the smaller of the two numbers.
 
+Reference: https://www.youtube.com/watch?v=b0_S0X1JwGk&ab_channel=EasyTheory
+
 TODO: Understand the explanation.
 """
 

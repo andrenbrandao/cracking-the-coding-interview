@@ -85,7 +85,7 @@ These are my solutions to the [Cracking the Coding Interview](https://www.amazon
 - [x] 8.2
 - [x] 8.3
 - [x] 8.4
-- [ ] 8.5
+- [ ] 8.5 - revisit for the optimal solution
 - [ ] 8.6
 - [ ] 8.7
 - [ ] 8.8
