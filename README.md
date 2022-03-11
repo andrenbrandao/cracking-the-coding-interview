@@ -37,7 +37,7 @@ These are my solutions to the [Cracking the Coding Interview](https://www.amazon
 - [x] 3.1
 - [x] 3.2
 - [x] 3.3
-- [ ] 3.4
+- [x] 3.4
 - [ ] 3.5
 - [ ] 3.6
 
